@@ -1,0 +1,21 @@
+<h1>Your Courses</h1>
+
+<h3>Courses with Tests</h3>
+<p>Click a course title to view the results for that course's test.</p>
+<table>
+  <% @courses.with_questions.each do |course| %>
+    <tr>
+      <td><%= link_to course.course_title, controller:"/test", action:"show", course: course %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h3>Courses without Tests</h3>
+<p>Click a course title to create a test for that course.</p>
+<table>
+  <% @courses.without_questions.each do |course| %>
+    <tr>
+      <td><%= link_to course.course_title, controller: "/test", action: "new", course_id: course.id %></td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,21 @@
+<h1><%= @course.course_title %></h1>
+
+<h3>Grade List</h3>
+<table class="table">
+  <tr>
+    <th>Uni</th>
+    <% (1..@course.questions.count).each do |i| %>
+    	<th><%= "Q#{i}" %></th>
+    <% end %>
+    <th>Total</th>
+  </tr>
+ 
+  <% @grade_list.each do |k, v| %>
+    <tr>
+      <td><%= k %></td>
+      <% (0..@course.questions.count).each do |n| %>
+      	<td><%= v[n] %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  department_code: MyString
+  call_number: 1
+  term: MyString
+  section_full: MyString
+  course_title: MyString
+  description: MyText
+  num_fixed_units: 
+  room: MyString
+  building_1: MyString
+  user_id: 
+
+two:
+  department_code: MyString
+  call_number: 1
+  term: MyString
+  section_full: MyString
+  course_title: MyString
+  description: MyText
+  num_fixed_units: 
+  room: MyString
+  building_1: MyString
+  user_id: 

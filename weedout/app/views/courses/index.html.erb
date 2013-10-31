@@ -1,0 +1,37 @@
+<h1>Courses</h1>
+<p class="lead"> Select a course below to take the registration test for that course.
+Note: You may only select a course for which you have not taken the test.</p>
+<!-- http://railscasts.com/episodes/37-simple-search-form
+but note that the code provided needed to be updated for rails 4 -->
+<%= form_tag courses_path, :method => 'get', class: "form-search text-center" do %>
+  <%= label_tag :search, "Search By Call Number: " %>
+  <%= text_field_tag :search, params[:search], class: "search-query" %>
+  <%= submit_tag "Search", :name => nil, class: "btn inline" %>
+  </p>
+<% end %>
+
+<% if @courses.length == 0 %>
+  <p> No courses with tests found. </p>
+<% else %>
+  <table class="table">
+    <tr>
+      <th>Course Title</th>
+      <th>Description</th>
+      <th>Call Number</th>
+    </tr>
+
+    <% @courses.each do |course| %>
+      <% test_taken = course.questions.first.question_responses.where(uni: current_user.uni).count > 0 %>
+      <tr>
+        <td><%= 
+        if test_taken then 
+          course.course_title 
+        else 
+          link_to course.course_title, controller: "response", action: "show", course: course end 
+          %></td>
+        <td><%= course.description %></td>
+        <td><%= course.call_number %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

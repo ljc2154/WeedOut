@@ -1,0 +1,27 @@
+<h1><%= @course.course_title %></h1>
+<p class="lead">Fill out the form below to create up to a 10 question test. 
+Be sure to mark a correct answer for each question.
+(Blank questions and responses will be discarded)</p>
+<%= form_tag("/test/create/#{@course.id}", method: "post") do %>
+  <%= hidden_field_tag(:course_id, @course.id) %>
+  <%= hidden_field_tag(:i, 10) %>
+
+  <% (1..10).each do |i| %>
+    <div class="row">
+      <h4><%= "#{i})" %></h4>
+    <fieldset class="span6">
+      <%= text_area_tag "questiontext-#{i}", nil, placeholder: "Question text here...", class: "input-block-level" %>
+      </br>
+      <% (1..4).each do |j| %>
+        <%= radio_button_tag "questionresponse-#{i}", "#{j}" %>
+        <%= text_field_tag "questionresponse-#{i}-#{j}", nil, placeholder: "Choice #{('A'..'D').to_a[j-1]}", class: "radio inline" %>
+        </br>
+      <% end %>
+    </fieldset>
+  </div>
+  </br>
+  </br>
+  <% end %>
+
+  <%= submit_tag "Save", class: "btn" %>
+<% end %>

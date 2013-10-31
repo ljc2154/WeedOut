@@ -1,0 +1,9 @@
+<h1>Select Courses</h1>
+<p>
+	<strong>Course List for <%= @prof_name %>:</strong>
+	<% @course_list.each do |d| %>
+		<tr>
+			<li><%= link_to d["SectionFull"], 'localhost:3000' %></li>
+		</tr>
+	<% end %>
+</p>

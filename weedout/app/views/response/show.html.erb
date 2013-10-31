@@ -1,0 +1,18 @@
+<h1><%= @course.course_title %></h1>
+</br>
+</br>
+<%= form_tag "/response/create/", method: "post" do %>
+  <%= hidden_field_tag(:i, @questions.count) %>
+  <% (0...@questions.count).each do |i| %>
+    <p class="lead"><%= "#{i+1}) #{@questions[i].text}" %></p>
+    <% (0...@question_choices[i].length).each do |j| %>
+        <%= label_tag "questionresponse-#{i}", class: "radio" do %>
+          <%= radio_button_tag "questionresponse-#{i}", @question_choices[i][j].id %>
+          <%= @question_choices[i][j].text %>
+        <% end %>
+        <%= hidden_field_tag "question-#{i}", @questions[i].id %>
+    <% end %>
+    </br>
+  <% end %>
+  <%= submit_tag "Save", class: "btn" %>
+<% end %>
